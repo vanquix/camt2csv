@@ -30,5 +30,5 @@ MIT.
 
 ## Author
 
-Graciela Su forked from:
+Graci Su forked from:
 Christian Studer, [Bureau für digitale Existenz](https://bureau.existenz.ch)
