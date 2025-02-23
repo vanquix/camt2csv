@@ -1,5 +1,8 @@
 import csv
+import glob
+import os
 import xml.etree.ElementTree as ET
+
 
 def parse_camt_file(camt_file):
     tree = ET.parse(camt_file)
@@ -47,9 +50,14 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description='Convert CAMT file to CSV.')
-    parser.add_argument('camt_file', help='The CAMT file to convert.')
-    parser.add_argument('csv_file', help='The output CSV file.')
-
+    parser.add_argument('xml_dir', help='The source directory where CAMT files are.')
+    
     args = parser.parse_args()
-    print("Converting {} to {}".format(args.camt_file, args.csv_file))
-    camt_to_csv(args.camt_file, args.csv_file)
+
+    directory = args.xml_dir
+    files = glob.glob(os.path.join(directory, "*"))  # List all files
+    
+    for camt_file in files:
+        camt_to_csv(camt_file, os.path.splitext(camt_file)[0] + '.csv')
+    print("Conversion complete")
+
